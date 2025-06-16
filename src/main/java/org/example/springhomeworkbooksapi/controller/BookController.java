@@ -28,7 +28,7 @@ public class BookController {
         ));
     }
 
-    // ✅ Fetch all books or by category using stream
+    //  Fetch all books or by category using stream
     @GetMapping
     public List<Books> getBooks(@RequestParam(name = "category", required = false) String category) {
         if (category == null) {
@@ -39,7 +39,7 @@ public class BookController {
                 .toList();
     }
 
-    // ✅ Fetch book by title using stream
+    //  Fetch book by title using stream
     @GetMapping("/{title}")
     public Books getBookByTitle(@PathVariable(name = "title") String title) {
         return books.stream()
@@ -48,7 +48,7 @@ public class BookController {
                 .orElse(null);
     }
 
-    // ✅ Create book if title doesn't exist
+    //  Create book if title doesn't exist
     @PostMapping
     public void createBook(@RequestBody Books newBook) {
         boolean isNewBook = books.stream()
@@ -58,7 +58,7 @@ public class BookController {
         }
     }
 
-    // ✅ Update existing book by title
+    //  Update existing book by title
     @PutMapping("/{title}")
     public void updateBook(@PathVariable(name = "title") String title, @RequestBody Books updatedBook) {
         for (int i = 0; i < books.size(); i++) {
@@ -69,7 +69,7 @@ public class BookController {
         }
     }
 
-    // ✅ Delete book by title
+    //  Delete book by title
     @DeleteMapping("/{title}")
     public void deleteBook(@PathVariable(name = "title") String title) {
         books.removeIf(book -> book.getTitle().equalsIgnoreCase(title));
